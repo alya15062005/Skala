@@ -23,22 +23,38 @@ const isPrivateNetworkHost = (hostname) => {
   return false;
 };
 
-const allowedOrigins = Array.from(new Set([FRONTEND_ORIGIN, ...localOrigins]));
+// Build allowed origins + hostnames for more tolerant matching (protocol vs hostname)
+const allowedOrigins = Array.from(new Set([FRONTEND_ORIGIN, ...localOrigins].filter(Boolean)));
+const allowedHostnames = allowedOrigins.map(o => {
+  try {
+    return new URL(o).hostname;
+  } catch {
+    return o;
+  }
+});
 console.log('CORS allowed origins:', allowedOrigins);
+console.log('CORS allowed hostnames (derived):', allowedHostnames);
+
 app.use(
   cors({
     origin: (origin, callback) => {
       // allow non-browser requests (e.g., curl, Postman) where origin is undefined
       if (!origin) return callback(null, true);
+
+      // Direct match with full origin (including protocol)
       if (allowedOrigins.includes(origin)) return callback(null, true);
 
+      // Try hostname match (accept if configured origin was hostname-only)
       try {
         const parsedOrigin = new URL(origin);
+        if (allowedHostnames.includes(parsedOrigin.hostname)) return callback(null, true);
+
+        // allow requests from private network hosts (localhosts)
         if ((parsedOrigin.protocol === 'http:' || parsedOrigin.protocol === 'https:') && isPrivateNetworkHost(parsedOrigin.hostname)) {
           return callback(null, true);
         }
-      } catch {
-        // Ignore malformed origins and reject below.
+      } catch (err) {
+        console.warn('CORS origin parse failed:', err.message);
       }
 
       return callback(new Error('Not allowed by CORS'));
