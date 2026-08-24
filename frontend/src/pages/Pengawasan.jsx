@@ -10,7 +10,7 @@ import { penugasanAPI } from "../service/api";
 import "./Dashboard.css";
 import Detail from "./Detail";
 import "./Pengawasan.css";
-import Penilaian from "./penilaian";
+import Penilaian from "./Penilaian";
 
 export default function Pengawasan() {
   const [search, setSearch] = useState("");
