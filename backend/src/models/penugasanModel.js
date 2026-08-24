@@ -185,12 +185,16 @@ export const deletePenugasan = async (id) => {
 // OB (Orang Bersih) functions
 export const ensureOBStatusColumn = async () => {
   try {
-    await pool.query(
-      "ALTER TABLE ob ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'aktif'"
+    // Check information_schema to see if 'status' column exists for table 'ob'
+    const check = await pool.query(
+      "SELECT COUNT(*) AS cnt FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = $1 AND TABLE_NAME = 'ob' AND COLUMN_NAME = 'status'",
+      [process.env.DB_NAME]
     );
-    await pool.query(
-      "UPDATE ob SET status = 'aktif' WHERE status IS NULL"
-    );
+    const count = check.rows && check.rows[0] ? parseInt(check.rows[0].cnt || check.rows[0]['COUNT(*)'] || 0, 10) : 0;
+    if (count === 0) {
+      await pool.query("ALTER TABLE ob ADD COLUMN status VARCHAR(20) DEFAULT 'aktif'");
+    }
+    await pool.query("UPDATE ob SET status = 'aktif' WHERE status IS NULL");
     // Try to add a CHECK constraint; ignore duplicate constraint errors
     try {
       await pool.query(
