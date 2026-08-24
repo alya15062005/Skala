@@ -1,0 +1,604 @@
+{
+  "info": {
+    "name": "BETA API",
+    "_postman_id": "9fcbf3e4-7fba-4f20-a719-456c0a58be80",
+    "description": "Collection for manual endpoint testing in Postman.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/auth/login" }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/auth/me" }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_lengkap\": \"Nama Baru\",\n  \"email\": \"user@example.com\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/auth/me" }
+          }
+        },
+        {
+          "name": "Upload Photo",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "foto",
+                  "type": "file",
+                  "src": ["<path-to-image>"]
+                }
+              ]
+            },
+            "url": { "raw": "{{base_url}}/auth/upload-photo" }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"oldpass123\",\n  \"newPassword\": \"newpass123\",\n  \"confirmPassword\": \"newpass123\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/auth/password" }
+          }
+        },
+        {
+          "name": "Get All Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/auth/users" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/admin/dashboard" }
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/admin/users" }
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_lengkap\": \"Nama User\",\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"user\",\n  \"status\": \"aktif\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/admin/users" }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_lengkap\": \"Nama User Updated\",\n  \"status\": \"aktif\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/users/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/users/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Area",
+      "item": [
+        {
+          "name": "List Areas",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/area" }
+          }
+        },
+        {
+          "name": "Get Area by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/area/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Area",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Area Testing\",\n  \"status\": \"aktif\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/area" }
+          }
+        },
+        {
+          "name": "Update Area",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Area Updated\",\n  \"status\": \"aktif\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/area/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Area",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/area/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shift",
+      "item": [
+        {
+          "name": "List Shifts",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/shift" }
+          }
+        },
+        {
+          "name": "Get Shift by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/shift/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Shift",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_shift\": \"Shift Pagi\",\n  \"jam_mulai\": \"08:00\",\n  \"jam_selesai\": \"12:00\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/shift" }
+          }
+        },
+        {
+          "name": "Update Shift",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_shift\": \"Shift Pagi Updated\",\n  \"jam_mulai\": \"08:30\",\n  \"jam_selesai\": \"12:30\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/shift/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Shift",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/shift/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Penugasan",
+      "item": [
+        {
+          "name": "List Penugasan",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/penugasan" }
+          }
+        },
+        {
+          "name": "Get Penugasan by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/penugasan/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Penugasan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_user\": 1,\n  \"tanggal_awal\": \"2026-06-23\",\n  \"id_tugas\": 1\n}"
+            },
+            "url": { "raw": "{{base_url}}/penugasan" }
+          }
+        },
+        {
+          "name": "Update Penugasan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deskripsi\": \"Penugasan diperbarui\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/penugasan/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Penugasan",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/penugasan/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "OB",
+      "item": [
+        {
+          "name": "List OB",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/penugasan/ob/all" }
+          }
+        },
+        {
+          "name": "Create OB",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_ob\": \"Nama OB\",\n  \"status\": \"aktif\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/penugasan/ob" }
+          }
+        },
+        {
+          "name": "Update OB",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_ob\": \"OB Updated\",\n  \"status\": \"aktif\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/penugasan/ob/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete OB",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/penugasan/ob/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ruangan",
+      "item": [
+        {
+          "name": "List Ruangan",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/penugasan/ruangan/all" }
+          }
+        },
+        {
+          "name": "Create Ruangan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_ruangan\": \"Ruang Testing\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/penugasan/ruangan" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tugas",
+      "item": [
+        {
+          "name": "List Tugas",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/penugasan/tugas/all" }
+          }
+        },
+        {
+          "name": "Create Tugas",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_tugas\": \"Sapu Lantai\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/penugasan/tugas" }
+          }
+        },
+        {
+          "name": "Update Tugas",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_tugas\": \"Tugas Updated\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/penugasan/tugas/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Tugas",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/penugasan/tugas/:id",
+              "variable": [
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Laporan",
+      "item": [
+        {
+          "name": "List Laporan",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/penugasan/laporan/all" }
+          }
+        },
+        {
+          "name": "Create Laporan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_penugasan\": 1,\n  \"tanggal\": \"2026-06-23\",\n  \"status_kehadiran\": \"hadir\",\n  \"nilai\": \"green\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/penugasan/laporan" }
+          }
+        },
+        {
+          "name": "Update Laporan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status_kehadiran\": \"hadir\",\n  \"nilai\": \"green\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/penugasan/laporan/:id_laporan",
+              "variable": [
+                { "key": "id_laporan", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Laporan by Penugasan",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/penugasan/laporan/:id_penugasan",
+              "variable": [
+                { "key": "id_penugasan", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Aktivitas",
+      "item": [
+        {
+          "name": "List Aktivitas",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/penugasan/aktivitas/all?limit=10" }
+          }
+        },
+        {
+          "name": "Create Aktivitas",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_user\": 1,\n  \"tipe_aktivitas\": \"login\",\n  \"aksi\": \"User login\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/penugasan/aktivitas" }
+          }
+        }
+      ]
+    }
+  ]
+}

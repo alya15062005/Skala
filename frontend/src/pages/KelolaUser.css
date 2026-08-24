@@ -1,0 +1,82 @@
+.kelola-user-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fb;
+}
+
+.kelola-user-main {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add {
+  background: #00852d;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+}
+
+/* TABLE */
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mini-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ROLE BADGE */
+.role {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.role.Admin {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+.role.User {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+/* STATUS */
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.Aktif {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status.Nonaktif {
+  background: #F3F4F6;
+  color: #364153;
+}

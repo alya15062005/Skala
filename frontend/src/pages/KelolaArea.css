@@ -1,0 +1,271 @@
+.kelola-area-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fb;
+}
+
+.kelola-area-main {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.search-box {
+  width: 360px;
+  height: 46px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+  border: 1px solid #eee;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* USER */
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 1px solid #eee;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #00a63e;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 36px;
+}
+
+.header p {
+  color: #777;
+  margin-top: 6px;
+}
+
+.btn-add {
+  background: #00852d;
+  color: white;
+  border: none;
+
+  padding: 10px 16px; /* lebih kecil */
+  border-radius: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+
+  width: fit-content;   
+  white-space: nowrap;  
+  font-size: 14px;
+}
+.btn-add:hover {
+  background: #006b24;
+  transform: translateY(-1px);
+  transition: 0.2s;
+}
+
+/* TABLE */
+.table-box {
+  margin-top: 24px;
+  background: white;
+  border-radius: 24px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f5f6f8;
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+}
+
+td {
+  border-top: 1px solid #f0f0f0;
+}
+
+/* STATUS */
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.status.aktif {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status.nonaktif {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+/* AKSI */
+.aksi {
+  display: flex;
+  gap: 12px;
+}
+
+.edit {
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.delete {
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #00852d;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.btn-cancel {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background: white;
+  color: black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+  background: #e5e7eb;
+}
+
+.btn-save {
+  padding: 10px 20px;
+  background: #00852d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-save:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

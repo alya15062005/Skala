@@ -1,0 +1,116 @@
+CREATE TABLE users (
+  id_user SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  nama_lengkap VARCHAR(100) NOT NULL,
+  role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'pengawas', 'user')),
+  email VARCHAR(100),
+  foto VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ob (
+  id_ob SERIAL PRIMARY KEY,
+  nama_ob VARCHAR(100) UNIQUE NOT NULL,
+  kontak VARCHAR(20),
+  status VARCHAR(20) DEFAULT 'aktif'
+    CHECK (status IN ('aktif', 'non-aktif')),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ruangan (
+  id_ruangan SERIAL PRIMARY KEY,
+  nama_ruangan VARCHAR(100) NOT NULL,
+  lantai VARCHAR(10) NOT NULL,
+  status VARCHAR(20) DEFAULT 'aktif' CHECK (status IN ('aktif', 'non-aktif')),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(nama_ruangan, lantai)
+);
+
+CREATE TABLE tugas (
+  id_tugas SERIAL PRIMARY KEY,
+  nama_tugas VARCHAR(100) NOT NULL,
+  deskripsi TEXT,
+  kategori VARCHAR(50) DEFAULT 'Pembersihan',
+  status VARCHAR(20) DEFAULT 'aktif' CHECK (status IN ('aktif', 'non-aktif')),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE laporan (
+  id_laporan SERIAL PRIMARY KEY,
+  id_penugasan INTEGER NOT NULL,
+  id_user_pengawas INTEGER,
+  tanggal DATE NOT NULL,
+  shift VARCHAR(20),
+  status_kehadiran VARCHAR(20) NOT NULL CHECK (status_kehadiran IN ('hadir', 'tidak-hadir', 'izin')),
+  person_assigned VARCHAR(100),
+  nilai VARCHAR(20) NOT NULL CHECK (nilai IN ('green', 'yellow', 'red')),
+  status VARCHAR(20) GENERATED ALWAYS AS (
+    CASE
+      WHEN nilai = 'green' THEN 'selesai'
+      WHEN nilai = 'yellow' THEN 'perlu-perbaikan'
+      WHEN nilai = 'red' THEN 'belum-selesai'
+      ELSE 'pending'
+    END
+  ) STORED,
+  catatan TEXT,
+  foto_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_penugasan) REFERENCES penugasan(id_penugasan) ON DELETE CASCADE,
+  FOREIGN KEY (id_user_pengawas) REFERENCES users(id_user) ON DELETE SET NULL
+);
+
+CREATE TABLE shift (
+  id_shift SERIAL PRIMARY KEY,
+  nama_shift VARCHAR(100) NOT NULL,
+  jam_mulai TIME NOT NULL,
+  jam_selesai TIME NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE penugasan (
+  id_penugasan SERIAL PRIMARY KEY,
+  id_user INTEGER NOT NULL,
+  id_ob INTEGER,
+  id_ruangan INTEGER,
+  id_tugas INTEGER, 
+  tanggal_awal DATE NOT NULL,
+  tanggal_akhir DATE NOT NULL,
+  kode_pengerjaan VARCHAR(50) UNIQUE,
+  shift VARCHAR(20),
+  deskripsi TEXT,
+  catatan_khusus TEXT, 
+  rolling_mingguan BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
+  FOREIGN KEY (id_ob) REFERENCES ob(id_ob) ON DELETE SET NULL,
+  FOREIGN KEY (id_ruangan) REFERENCES ruangan(id_ruangan) ON DELETE SET NULL,
+  FOREIGN KEY (id_tugas) REFERENCES tugas(id_tugas) ON DELETE SET NULL
+);
+
+CREATE TABLE aktivitas (
+  id_aktivitas SERIAL PRIMARY KEY,
+  id_user INTEGER REFERENCES users(id_user),
+  nama_user VARCHAR(255),
+  role_user VARCHAR(50),
+  tipe_aktivitas VARCHAR(50) NOT NULL,
+  aksi VARCHAR(100) NOT NULL,
+  nama_entitas VARCHAR(255),
+  id_entitas INTEGER,
+  detail TEXT,
+  area_terkait VARCHAR(255),
+  status VARCHAR(50) DEFAULT 'selesai',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes untuk performa
+CREATE INDEX idx_aktivitas_user ON aktivitas(id_user);
+CREATE INDEX idx_aktivitas_tipe ON aktivitas(tipe_aktivitas);
+CREATE INDEX idx_aktivitas_created ON aktivitas(created_at DESC);
+

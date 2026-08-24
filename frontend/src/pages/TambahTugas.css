@@ -1,0 +1,420 @@
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker-popper {
+  z-index: 100000 !important;
+}
+
+.react-datepicker {
+  font-family: 'Inter', sans-serif;
+  border-radius: 15px !important;
+  border: 1px solid #edf2f7 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+  background-color: white !important;
+  border-bottom: 1px solid #edf2f7 !important;
+  border-radius: 15px 15px 0 0 !important;
+  padding-top: 10px !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #0a8f3c !important; 
+  border-radius: 8px !important;
+}
+
+.react-datepicker__day:hover {
+  border-radius: 8px !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 99999;
+  backdrop-filter: blur(3px);
+  padding: 0 0 0 0;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 100%;
+  max-height: 92vh;
+  padding: 28px 24px 20px;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.12);
+  animation: slideIn 0.3s ease;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    max-width: 520px;
+    border-radius: 30px;
+    padding: 35px;
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.icon-main-bg {
+  background-color: #e6f4ea;
+  color: #0a8f3c;
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.form-group-item {
+  margin-bottom: 18px;
+}
+
+.label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.label-with-icon svg {
+  font-size: 16px;
+  color: #1a202c;
+}
+
+.grid-periode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.input-hint {
+  font-size: 11px;
+  color: #a0aec0;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.custom-input, .custom-select, .custom-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid #edf2f7;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #4a5568;
+  outline: none;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.custom-textarea {
+  height: 90px;
+  resize: none;
+}
+
+.custom-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a0aec0'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+}
+
+.modal-footer-btns {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-modal-batal {
+  flex: 1;
+  background: white;
+  border: 1px solid #edf2f7;
+  color: #2d3748;
+  padding: 14px;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-modal-batal:hover,
+.btn-modal-batal:active,
+.btn-modal-batal:focus,
+.btn-modal-batal:focus-visible {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #202124;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-modal-simpan {
+  flex: 1;
+  background-color: #8cc6a5;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(140, 198, 165, 0.3);
+}
+
+.tambah-tugas-handle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .tambah-tugas-overlay.modal-overlay {
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    background: rgba(0, 0, 0, 0.34) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  .tambah-tugas-sheet.modal-content {
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: var(--sheet-height, 50vh) !important;
+    max-height: var(--sheet-height, 50vh) !important;
+    overflow-y: var(--sheet-overflow, hidden) !important;
+    padding: 38px 26px 28px !important;
+    border-radius: 28px 28px 0 0 !important;
+    box-shadow: 0 -18px 45px rgba(0, 0, 0, 0.18) !important;
+    animation: mobileSheetSlideUp 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    box-sizing: border-box !important;
+    transition:
+      height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @supports (height: 100dvh) {
+    .tambah-tugas-sheet.modal-content {
+      height: var(--sheet-height, 50dvh) !important;
+      max-height: var(--sheet-height, 50dvh) !important;
+    }
+  }
+
+  .tambah-tugas-sheet.modal-content::before {
+    content: none !important;
+  }
+
+  .tambah-tugas-handle {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 74px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    cursor: grab;
+    outline: none;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tambah-tugas-handle::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 74px;
+    height: 4px;
+    border-radius: 999px;
+    background: #7a7a7a;
+  }
+
+  .tambah-tugas-handle:active {
+    cursor: grabbing;
+  }
+
+  .tambah-tugas-handle:focus,
+  .tambah-tugas-handle:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  @keyframes mobileSheetSlideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0.96;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-header-section {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+
+  .icon-main-bg {
+    width: 26px;
+    height: 26px;
+    border-radius: 9px;
+    font-size: 15px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .modal-title {
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .modal-form-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-item {
+    margin-bottom: 14px;
+  }
+
+  .label-with-icon {
+    gap: 7px;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111111;
+  }
+
+  .label-with-icon svg {
+    width: 16px;
+    height: 16px;
+    color: #111111;
+  }
+
+  .grid-periode {
+    gap: 14px;
+  }
+
+  .input-hint {
+    font-size: 10px;
+    margin-bottom: 4px;
+    color: #8a8f98;
+  }
+
+  .custom-input,
+  .custom-select,
+  .custom-textarea {
+    min-height: 34px;
+    padding: 8px 22px;
+    border: 1px solid #cfd5df;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #7a7f87;
+    box-shadow: none;
+  }
+
+  .custom-select {
+    height: 34px;
+    padding-right: 42px;
+    background-position: right 16px center;
+    background-size: 21px;
+  }
+
+  @media (min-width: 769px) {
+    .custom-select {
+      background-image: none;
+      padding-right: 16px;
+    }
+
+    .custom-select::-ms-expand {
+      display: none;
+    }
+  }
+
+  .custom-textarea {
+    min-height: 74px;
+    padding-top: 14px;
+    resize: none;
+  }
+
+  .react-datepicker-wrapper,
+  .react-datepicker__input-container {
+    display: block;
+  }
+
+  .modal-footer-btns {
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .btn-modal-batal,
+  .btn-modal-simpan {
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .btn-modal-batal {
+    border: 1px solid #cfd5df;
+    color: #202124;
+  }
+
+  .btn-modal-batal svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .btn-modal-simpan {
+    background: #008f3c;
+    box-shadow: 0 10px 18px rgba(0, 113, 45, 0.22);
+  }
+}

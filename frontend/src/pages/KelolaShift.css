@@ -1,0 +1,96 @@
+.kelola-shift-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fb;
+}
+
+.kelola-shift-main {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add {
+  background: #00852d;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+}
+
+/* TABLE */
+.table-box {
+  margin-top: 24px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 16px;
+}
+
+thead {
+  background: #f5f6f8;
+}
+
+td {
+  border-top: 1px solid #f0f0f0;
+}
+
+.aksi {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+}
+
+/* MODAL (reuse style sebelumnya) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  width: 400px;
+}
+
+.modal-content input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

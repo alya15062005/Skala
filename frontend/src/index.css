@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+/* RESET WAJIB */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CEGAH LAYOUT MELEBAR */
+html, body, #root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Global topbar layout for all pages */
+html body .topbar {
+  background: #F6F6F6 !important;
+  padding: 15px 30px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+html body .topbar-brand-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
+
+html body .topbar-logo {
+  width: 120px !important;
+  height: 45px !important;
+  object-fit: contain !important;
+}
+
+html body .search-bar,
+html body .search-box {
+  background: white !important;
+  padding: 10px 20px !important;
+  border-radius: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 300px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #eee !important;
+}
+
+html body .search-bar input,
+html body .search-box input {
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+  background: transparent !important;
+}
+
+html body .user-profile,
+html body .user-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 16px !important;
+}
+
+html body .topbar .avatar {
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+html body .user-info {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+html body .user-name {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #2D3748 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+html body .user-role {
+  font-size: 13px !important;
+  color: #718096 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+html body .dropdown-icon,
+html body .topbar .user-box > svg,
+html body .topbar .user-profile > svg,
+html body .topbar .search-bar svg,
+html body .topbar .search-box svg {
+  color: #718096 !important;
+  font-size: 18px !important;
+  margin-left: 10px !important;
+}
+
+@media (max-width: 768px) {
+  html body .topbar {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    gap: 16px !important;
+  }
+
+  html body .topbar-brand-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  html body .topbar-logo {
+    width: 118px !important;
+    height: 54px !important;
+    object-fit: contain !important;
+  }
+
+  html body .topbar .search-bar,
+  html body .topbar .search-box {
+    order: 2 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: 64px !important;
+    padding: 0 14px !important;
+    border-radius: 18px !important;
+    background: #f4f4f4 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    position: relative !important;
+  }
+
+  html body .topbar .search-bar::after,
+  html body .topbar .search-box::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 14px !important;
+    right: 14px !important;
+    top: 14px !important;
+    bottom: 14px !important;
+    border-radius: 999px !important;
+    background: #ffffff !important;
+  }
+
+  html body .topbar .search-bar svg,
+  html body .topbar .search-bar input,
+  html body .topbar .search-box svg,
+  html body .topbar .search-box input {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  html body .topbar .search-bar input,
+  html body .topbar .search-box input {
+    background: transparent !important;
+    font-size: 13px !important;
+  }
+
+  html body .topbar .user-profile,
+  html body .topbar .user-box {
+    order: 1 !important;
+    padding: 0 !important;
+    margin-left: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  html body .topbar .user-info,
+  html body .topbar .dropdown-icon,
+  html body .topbar .topbar-search svg,
+  html body .topbar .search-box > svg,
+  html body .topbar .search-bar > svg,
+  html body .topbar .user-box > svg,
+  html body .topbar .user-profile > svg {
+    display: none !important;
+  }
+
+  html body .topbar .avatar {
+    width: 34px !important;
+    height: 34px !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14) !important;
+  }
+}
