@@ -202,7 +202,7 @@ export default function KelolaUser() {
         <section className="content">
           <div className="header">
             <div>
-              <h1>Kelola User</h1>
+              <h1>Kelola Pengguna</h1>
               <p>Manajemen data pengguna sistem</p>
             </div>
 
@@ -288,10 +288,10 @@ export default function KelolaUser() {
 
       {/* MODAL */}
       {showModal && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="user-modal-overlay" onClick={handleCloseModal}>
+          <div className="user-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>{editingUser ? "Edit User" : "Tambah User"}</h2>
+              <h2>{editingUser ? "Edit Pengguna" : "Tambah Pengguna"}</h2>
               <FiX onClick={handleCloseModal} />
             </div>
 

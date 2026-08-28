@@ -69,7 +69,7 @@ export default function Login() {
         <h2 className="bps">KOTA SUKABUMI</h2>
 
         <h1 className="title">BETA</h1>
-        <p className="subtitle">Bersih dan Tertata</p>
+        <p className="subtitle">Bersih dan Tertata dan Aman</p>
 
         <form onSubmit={handleLogin}>
           <input

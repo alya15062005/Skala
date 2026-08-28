@@ -29,6 +29,11 @@ export default function AdminSidebar() {
       icon: <FiGrid />,
     },
     {
+      name: "Kelola Pengguna",
+      path: "/admin/users",
+      icon: <FiUsers />,
+    },
+    {
       name: "Kelola Area",
       path: "/admin/area",
       icon: <FiMapPin />,
@@ -41,11 +46,6 @@ export default function AdminSidebar() {
     {
       name: "Kelola OB",
       path: "/admin/ob",
-      icon: <FiUsers />,
-    },
-    {
-      name: "Kelola User",
-      path: "/admin/users",
       icon: <FiUsers />,
     },
     {
